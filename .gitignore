@@ -5,3 +5,11 @@ dist
 
 # Ignore the output video from Git but not videos you import into src/.
 out
+
+# Python venv and TTS model files (large, re-downloadable)
+.venv
+models
+__pycache__
+
+# Rendered test clip
+test-clip.mp4
