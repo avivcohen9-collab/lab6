@@ -54,12 +54,12 @@ Shazam doesn't compare raw sound. It turns audio into a sparse "star map" of lou
 
 ---
 
-## Scene 6 — Database lookup (~20s)
+## Scene 6 — Hash table lookup (~27s)
 
-**On screen:** Title "Step 4: Lookup". The stack of fingerprint chips that Scene 5 ends with slides to the left ("Your fingerprints"). A "Giant index" table builds row by row ("built ahead of time from every song in the library"), sorted by hash. The first chip flies straight to its row: "found in 0.001s". Caption: "Sorted like a dictionary: jump straight to the entry, no scanning". The rest of the chips fire in quick succession, and unrelated rows dim. Each hit row then reveals its songs, then the exact timestamp in each song (e.g. "Midnight Drive @ 0:42.1", "Ocean Lights @ 1:05.3"). Midnight Drive and Ocean Lights both collect several hits, which sets up Scene 7.
+**On screen:** Title "Step 4: Hash table lookup". The fingerprint chips from Scene 5 slide left ("Your fingerprints = keys"). A hash table with numbered buckets [0]–[11] builds row by row ("built ahead of time from every song in the library"). Each key goes through an "h(key)" box that outputs its bucket number, then jumps straight to that bucket. Badges: "hash lookup: O(1) per key" vs "scan every song: O(n)" (struck out). The values are revealed as lists of (song, time) pairs. Midnight Drive and Ocean Lights both collect several hits, which sets up Scene 7.
 
 **Narration:**
-> Now Shazam looks up each fingerprint in a giant index. It was built ahead of time, by fingerprinting every song in its library. Finding a fingerprint there is instant, like looking up a word in a dictionary. Each one points to the songs that contain it, and the exact moment it appears in each song.
+> Now Shazam looks up each fingerprint in a hash table, built ahead of time from every song in its library. The fingerprint is the key. A hash function maps the key straight to a bucket, so each lookup takes constant time, O of one, instead of scanning millions of songs, which is O of n. The value stored in each bucket is a list of pairs: a song that contains this fingerprint, and the time it appears in that song.
 
 ---
 
