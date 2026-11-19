@@ -36,12 +36,12 @@ Shazam doesn't compare raw sound. It turns audio into a sparse "star map" of lou
 
 ---
 
-## Scene 4 — Constellation map (~8s)
+## Scene 4 — Constellation map (~16s)
 
-**On screen:** Everything in the spectrogram fades except the brightest local peaks, which become white dots on a dark background, like stars. The faint noise disappears, and the dots stay.
+**On screen:** Picks up on Scene 3's exact final spectrogram. Faint café-noise speckles appear over it. The title changes to "Step 2: Keep the peaks", the legend fades, the dim cells fade away (quietest first), and the local-maximum cells shrink into glowing white dots. The noise speckles flicker and vanish while the dots stay and pulse once. Then the background darkens to a night sky, the axes fade, the dots twinkle, and a "Constellation map" caption appears.
 
 **Narration:**
-> Then it keeps only the loudest peaks. These bright points survive the noise, and together they look like a map of stars.
+> But that picture is still full of detail, and the café noise is in there too. So Shazam keeps only the loudest peaks, the brightest points. Background noise is quieter, so these peaks survive it. Together, they look like a map of stars.
 
 ---
 
