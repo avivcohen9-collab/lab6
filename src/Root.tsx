@@ -11,6 +11,7 @@ import {
   SCENE4_DURATION,
   Scene4Constellation,
 } from "./scenes/Scene4Constellation";
+import { SCENE5_DURATION, Scene5Fingerprints } from "./scenes/Scene5Fingerprints";
 import { SCENE6_DURATION, Scene6Lookup } from "./scenes/Scene6Lookup";
 import { SCENE7_DURATION, Scene7Alignment } from "./scenes/Scene7Alignment";
 import { FPS, HEIGHT, WIDTH } from "./theme";
@@ -55,6 +56,14 @@ export const RemotionRoot: React.FC = () => {
           id="Scene4Constellation"
           component={Scene4Constellation}
           durationInFrames={Math.round(SCENE4_DURATION * FPS)}
+          fps={FPS}
+          width={WIDTH}
+          height={HEIGHT}
+        />
+        <Composition
+          id="Scene5Fingerprints"
+          component={Scene5Fingerprints}
+          durationInFrames={Math.round(SCENE5_DURATION * FPS)}
           fps={FPS}
           width={WIDTH}
           height={HEIGHT}
