@@ -133,7 +133,8 @@ const Title: React.FC = () => {
     <>
       {/* Scene 6's title, same position and style, handing over */}
       <div style={{ ...base, opacity: 1 - out, translate: `0px ${-30 * out}px` }}>
-        Step 4: <span style={{ color: COLORS.accentLight }}>Lookup</span>
+        Step 4:{" "}
+        <span style={{ color: COLORS.accentLight }}>Hash table lookup</span>
       </div>
       <div
         style={{

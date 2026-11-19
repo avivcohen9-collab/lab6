@@ -11,13 +11,15 @@ import {
   Scene4Constellation,
 } from "./scenes/Scene4Constellation";
 import { SCENE6_DURATION, Scene6Lookup } from "./scenes/Scene6Lookup";
+import { SCENE7_DURATION, Scene7Alignment } from "./scenes/Scene7Alignment";
 
 export const SCENES_TOTAL_SECONDS =
   SCENE1_DURATION +
   SCENE2_DURATION +
   SCENE3_DURATION +
   SCENE4_DURATION +
-  SCENE6_DURATION;
+  SCENE6_DURATION +
+  SCENE7_DURATION;
 
 export const ShazamExplainer: React.FC = () => {
   const { fps } = useVideoConfig();
@@ -38,6 +40,9 @@ export const ShazamExplainer: React.FC = () => {
       {/* Scene 5 (fingerprints) goes here once merged */}
       <Series.Sequence durationInFrames={Math.round(SCENE6_DURATION * fps)}>
         <Scene6Lookup />
+      </Series.Sequence>
+      <Series.Sequence durationInFrames={Math.round(SCENE7_DURATION * fps)}>
+        <Scene7Alignment />
       </Series.Sequence>
     </Series>
   );
