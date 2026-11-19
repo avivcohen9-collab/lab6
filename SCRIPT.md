@@ -45,12 +45,12 @@ Shazam doesn't compare raw sound. It turns audio into a sparse "star map" of lou
 
 ---
 
-## Scene 5 — Fingerprint hashes (~8s)
+## Scene 5 — Fingerprint hashes (~26s)
 
-**On screen:** One anchor star highlights and draws lines to a few nearby stars. One pair is zoomed in, and a label builds up: `[ f1 | f2 | Δt ]` → `hash: 3A7F…`. Several more pairs quickly turn into hash chips.
+**On screen:** Picks up on Scene 4's exact last frame (the white stars on the night sky, "Step 2: Keep the peaks", "Constellation map" caption). The title changes to "Step 3: Fingerprints". One star grows and glows with a pulsing ring as the anchor, and the others dim. A dashed "target zone" box appears to its right (ahead in time), and lines draw from the anchor to the stars inside it. The camera zooms into one pair: "f1" and "f2" badges pop onto the two stars, dashed lines drop to a time axis, and a Δt bracket spans the gap. The three labels slide into a chip `[ f1 | f2 | Δt ] → #3A7F`. A copy of the pair slides far to the right (recorded later). Its "starts at 0:03" / "starts at 0:41" timestamps get struck out while both Δt brackets glow green. The copy builds the identical `#3A7F` chip, with "=" and a green ✓ ("Same fingerprint, any start time"). The camera zooms back out, and #3A7F flies to the top of a "fingerprints" stack at the right edge. Seven more anchors quickly fire lines to their neighbours, and each shoots a hash chip into the stack, which ends with 8 chips.
 
 **Narration:**
-> Next, it pairs nearby peaks. Each pair becomes a tiny fingerprint: the two frequencies and the time between them.
+> But a star map is still hard to search. So Shazam picks one star as an anchor, and pairs it with a few nearby stars just ahead of it. Each pair becomes a tiny fingerprint: the two pitches, and the time gap between them. Because it uses the gap, not the exact time, the fingerprint is the same no matter when you started recording. Shazam does this for every star, and gets a whole stack of fingerprints.
 
 ---
 
