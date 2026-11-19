@@ -72,9 +72,9 @@ Shazam doesn't compare raw sound. It turns audio into a sparse "star map" of lou
 
 ---
 
-## Scene 8 — Outro (~9s)
+## Scene 8 — Outro (~18s)
 
-**On screen:** A quick recap strip: sound → spectrogram → stars → fingerprints → match ✓. It ends back on the phone showing the found song.
+**On screen:** Scene 7's title hands over to "The whole trick". A recap strip, Sound → Spectrogram → Stars → Fingerprints → Match ✓, lights up step by step as the narration names each one. The strip moves up and Scene 1's "✓ Song found: Midnight Drive" card pops in with "3.0s", then "…before the chorus even starts."
 
 **Narration:**
-> Just a few strong peaks, turned into fingerprints, and matched in a split second. That is how Shazam names a song before the chorus even starts.
+> And that's the whole trick. The sound becomes a spectrogram. The spectrogram becomes a map of stars. Pairs of stars become fingerprints. And the fingerprints that line up in time name the song. All in about three seconds, often before the chorus even starts.
