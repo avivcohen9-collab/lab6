@@ -10,19 +10,21 @@ import {
 } from "remotion";
 import { BACKGROUND, COLORS, FONT } from "../theme";
 
-export const SCENE2_DURATION = 25; // seconds (narration is 24.1s)
+export const SCENE2_DURATION = 27; // seconds (narration is 25.5s; hold the question)
 
 // Sentence cues (seconds), from silence detection on public/narration/scene2.wav
 const T = {
-  library: 1.3, // "Shazam has a library of millions of songs."
-  recording: 4.6, // "Its job is to find the one your short recording came from."
-  compare: 8.6, // "The obvious idea is to compare the raw sound wave..."
-  tooSlow: 13.6, // "But that would be far too slow."
-  partB: 15.8, // "And in a noisy café,"
-  chatter: 17.5, // "chatter and clinking cups"
-  shape: 19.0, // "change the shape of the sound wave,"
-  overlay: 21.5, // "so it would never match..."
-  noMatch: 22.9, // "...the original recording."
+  library: 1.25, // "Shazam has a library of millions of songs."
+  recording: 4.5, // "Its job is to find the one your short recording came from."
+  compare: 8.5, // "The obvious idea is to compare the raw sound wave..."
+  tooSlow: 13.4, // "But that would be far too slow."
+  partB: 15.7, // "And in a noisy café,"
+  chatter: 17.4, // "chatter and clinking cups"
+  shape: 18.9, // "change the shape of the sound wave,"
+  overlay: 21.4, // "so it would never match..."
+  noMatch: 22.7, // "...the original recording."
+  clear: 23.6, // pause before the question
+  question: 24.2, // "So how does it work?"
 };
 
 const clamp = {
@@ -580,6 +582,51 @@ const NoMatch: React.FC = () => {
   );
 };
 
+// Fades Part B out to make room for the closing question
+const ClearForQuestion: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const opacity = interpolate(
+    frame,
+    [T.clear * fps, (T.clear + 0.5) * fps],
+    [1, 0],
+    clamp,
+  );
+  return <AbsoluteFill style={{ opacity }}>{children}</AbsoluteFill>;
+};
+
+const HowQuestion: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const enter = spring({
+    frame: frame - T.question * fps,
+    fps,
+    config: { damping: 14 },
+  });
+  if (frame < T.question * fps) return null;
+
+  return (
+    <AbsoluteFill
+      style={{
+        justifyContent: "center",
+        alignItems: "center",
+        fontFamily: FONT,
+        fontSize: 120,
+        color: COLORS.text,
+        opacity: enter,
+        scale: String(interpolate(enter, [0, 1], [0.8, 1])),
+      }}
+    >
+      <div>
+        So <span style={{ color: COLORS.accentLight }}>how</span> does it
+        work?
+      </div>
+    </AbsoluteFill>
+  );
+};
+
 export const Scene2Problem: React.FC = () => {
   return (
     <AbsoluteFill style={{ background: BACKGROUND }}>
@@ -588,13 +635,17 @@ export const Scene2Problem: React.FC = () => {
       <SongGrid />
       <PartALabels />
       {/* Part B */}
-      <OriginalWave />
-      <CafeWave />
-      <SpeechBubble x={170} y={830} delay={0} text="...and then she said..." />
-      <SpeechBubble x={1380} y={860} delay={0.5} text="haha!" flip />
-      <SpeechBubble x={1300} y={470} delay={1.1} text="one latte please" flip />
-      <Cup x={260} y={460} delay={0.9} />
-      <NoMatch />
+      <ClearForQuestion>
+        <OriginalWave />
+        <CafeWave />
+        <SpeechBubble x={170} y={830} delay={0} text="...and then she said..." />
+        <SpeechBubble x={1380} y={860} delay={0.5} text="haha!" flip />
+        <SpeechBubble x={1300} y={470} delay={1.1} text="one latte please" flip />
+        <Cup x={260} y={460} delay={0.9} />
+        <NoMatch />
+      </ClearForQuestion>
+      {/* Ending: bridge into Scene 3 */}
+      <HowQuestion />
     </AbsoluteFill>
   );
 };
