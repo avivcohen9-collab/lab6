@@ -12,6 +12,7 @@ import {
   Scene4Constellation,
 } from "./scenes/Scene4Constellation";
 import { SCENE6_DURATION, Scene6Lookup } from "./scenes/Scene6Lookup";
+import { SCENE7_DURATION, Scene7Alignment } from "./scenes/Scene7Alignment";
 import { FPS, HEIGHT, WIDTH } from "./theme";
 
 export const RemotionRoot: React.FC = () => {
@@ -62,6 +63,14 @@ export const RemotionRoot: React.FC = () => {
           id="Scene6Lookup"
           component={Scene6Lookup}
           durationInFrames={Math.round(SCENE6_DURATION * FPS)}
+          fps={FPS}
+          width={WIDTH}
+          height={HEIGHT}
+        />
+        <Composition
+          id="Scene7Alignment"
+          component={Scene7Alignment}
+          durationInFrames={Math.round(SCENE7_DURATION * FPS)}
           fps={FPS}
           width={WIDTH}
           height={HEIGHT}
