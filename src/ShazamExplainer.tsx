@@ -50,6 +50,9 @@ export const ShazamExplainer: React.FC = () => {
       <Series.Sequence durationInFrames={Math.round(SCENE7_DURATION * fps)}>
         <Scene7Alignment />
       </Series.Sequence>
+      <Series.Sequence durationInFrames={Math.round(SCENE8_DURATION * fps)}>
+        <Scene8Outro />
+      </Series.Sequence>
     </Series>
   );
 };
