@@ -1,8 +1,13 @@
 import { Series, useVideoConfig } from "remotion";
 import { SCENE1_DURATION, Scene1Hook } from "./scenes/Scene1Hook";
 import { SCENE2_DURATION, Scene2Problem } from "./scenes/Scene2Problem";
+import {
+  SCENE3_DURATION,
+  Scene3Spectrogram,
+} from "./scenes/Scene3Spectrogram";
 
-export const SCENES_TOTAL_SECONDS = SCENE1_DURATION + SCENE2_DURATION;
+export const SCENES_TOTAL_SECONDS =
+  SCENE1_DURATION + SCENE2_DURATION + SCENE3_DURATION;
 
 export const ShazamExplainer: React.FC = () => {
   const { fps } = useVideoConfig();
@@ -13,6 +18,9 @@ export const ShazamExplainer: React.FC = () => {
       </Series.Sequence>
       <Series.Sequence durationInFrames={Math.round(SCENE2_DURATION * fps)}>
         <Scene2Problem />
+      </Series.Sequence>
+      <Series.Sequence durationInFrames={Math.round(SCENE3_DURATION * fps)}>
+        <Scene3Spectrogram />
       </Series.Sequence>
     </Series>
   );
