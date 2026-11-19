@@ -7,6 +7,11 @@ import {
   SCENE3_DURATION,
   Scene3Spectrogram,
 } from "./scenes/Scene3Spectrogram";
+import {
+  SCENE4_DURATION,
+  Scene4Constellation,
+} from "./scenes/Scene4Constellation";
+import { SCENE6_DURATION, Scene6Lookup } from "./scenes/Scene6Lookup";
 import { FPS, HEIGHT, WIDTH } from "./theme";
 
 export const RemotionRoot: React.FC = () => {
@@ -41,6 +46,22 @@ export const RemotionRoot: React.FC = () => {
           id="Scene3Spectrogram"
           component={Scene3Spectrogram}
           durationInFrames={Math.round(SCENE3_DURATION * FPS)}
+          fps={FPS}
+          width={WIDTH}
+          height={HEIGHT}
+        />
+        <Composition
+          id="Scene4Constellation"
+          component={Scene4Constellation}
+          durationInFrames={Math.round(SCENE4_DURATION * FPS)}
+          fps={FPS}
+          width={WIDTH}
+          height={HEIGHT}
+        />
+        <Composition
+          id="Scene6Lookup"
+          component={Scene6Lookup}
+          durationInFrames={Math.round(SCENE6_DURATION * FPS)}
           fps={FPS}
           width={WIDTH}
           height={HEIGHT}

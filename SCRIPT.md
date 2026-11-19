@@ -54,12 +54,12 @@ Shazam doesn't compare raw sound. It turns audio into a sparse "star map" of lou
 
 ---
 
-## Scene 6 — Database lookup (~10s)
+## Scene 6 — Database lookup (~20s)
 
-**On screen:** The hash chips fly into a large index or table (rows of hashes → song IDs). Matching rows flash. Song titles light up: several songs get a few hits each.
+**On screen:** Title "Step 4: Lookup". The stack of fingerprint chips that Scene 5 ends with slides to the left ("Your fingerprints"). A "Giant index" table builds row by row ("built ahead of time from every song in the library"), sorted by hash. The first chip flies straight to its row: "found in 0.001s". Caption: "Sorted like a dictionary: jump straight to the entry, no scanning". The rest of the chips fire in quick succession, and unrelated rows dim. Each hit row then reveals its songs, then the exact timestamp in each song (e.g. "Midnight Drive @ 0:42.1", "Ocean Lights @ 1:05.3"). Midnight Drive and Ocean Lights both collect several hits, which sets up Scene 7.
 
 **Narration:**
-> These fingerprints are looked up in a giant index, built ahead of time from every song in the catalog. The lookup is instant, like finding a word in a dictionary.
+> Now Shazam looks up each fingerprint in a giant index. It was built ahead of time, by fingerprinting every song in its library. Finding a fingerprint there is instant, like looking up a word in a dictionary. Each one points to the songs that contain it, and the exact moment it appears in each song.
 
 ---
 
