@@ -18,12 +18,12 @@ Shazam doesn't compare raw sound. It turns audio into a sparse "star map" of lou
 
 ---
 
-## Scene 2 — The problem (~12s)
+## Scene 2 — The problem (~25s)
 
-**On screen:** A clean waveform labeled "original song". Next to it, a crowd of thousands of tiny waveforms ("millions of songs"). Then café noise (chatter bubbles, a clinking cup) gets added to the recorded clip, and its waveform turns jagged. The two waveforms are overlaid: they don't match, red ✗.
+**On screen:** A grid of song tiles fills in, labeled "Shazam's library: millions of songs". Your short recording's waveform flies in from where the phone was, and a big "?" between them asks "which one?". The "?" becomes an arrow and a scanner checks the tiles one by one while a counter crawls: "FAR TOO SLOW". Then café noise (chatter bubbles, a clinking cup) gets added to the recorded clip, and its waveform turns jagged. The noisy wave slides onto the original: they don't match, red ✗.
 
 **Narration:**
-> Comparing raw sound against millions of songs would be far too slow. And in a noisy café, chatter and clinking cups change the shape of the sound wave, so it would never match the original recording.
+> Behind the scenes, Shazam has a library of millions of songs. Its job is to find the one your short recording came from. The obvious idea is to compare the raw sound wave against every song. But that would be far too slow. And in a noisy café, chatter and clinking cups change the shape of the sound wave, so it would never match the original recording.
 
 ---
 

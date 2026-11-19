@@ -10,16 +10,19 @@ import {
 } from "remotion";
 import { BACKGROUND, COLORS, FONT } from "../theme";
 
-export const SCENE2_DURATION = 14.2; // seconds (narration is 13.3s)
+export const SCENE2_DURATION = 25; // seconds (narration is 24.1s)
 
-// Word cues (seconds), estimated from public/narration/scene2.wav
+// Sentence cues (seconds), from silence detection on public/narration/scene2.wav
 const T = {
-  tooSlow: 3.2, // "...would be far too slow."
-  partB: 4.6, // "And in a noisy café,"
-  chatter: 6.2, // "chatter and clinking cups"
-  shape: 8.0, // "change the shape of the sound wave,"
-  overlay: 10.3, // "so it would never match..."
-  noMatch: 11.6, // "...the original recording."
+  library: 1.3, // "Shazam has a library of millions of songs."
+  recording: 4.6, // "Its job is to find the one your short recording came from."
+  compare: 8.6, // "The obvious idea is to compare the raw sound wave..."
+  tooSlow: 13.6, // "But that would be far too slow."
+  partB: 15.8, // "And in a noisy café,"
+  chatter: 17.5, // "chatter and clinking cups"
+  shape: 19.0, // "change the shape of the sound wave,"
+  overlay: 21.5, // "so it would never match..."
+  noMatch: 22.9, // "...the original recording."
 };
 
 const clamp = {
@@ -95,7 +98,10 @@ const SongGrid: React.FC = () => {
     clamp,
   );
   // The scanner checks one tile every 2 frames: painfully slow
-  const scanned = Math.floor(Math.max(0, frame - 0.8 * fps) / 2);
+  const scanned =
+    frame < T.compare * fps
+      ? -1
+      : Math.floor((frame - T.compare * fps) / 2);
 
   return (
     <div
@@ -112,12 +118,12 @@ const SongGrid: React.FC = () => {
       {Array.from({ length: GRID_COLS * GRID_ROWS }).map((_, i) => {
         const appear = interpolate(
           frame,
-          [i * 0.25, i * 0.25 + 6],
+          [T.library * fps + i * 0.25, T.library * fps + i * 0.25 + 6],
           [0, 1],
           clamp,
         );
         const isScanning = i === scanned;
-        const isDone = i < scanned;
+        const isDone = scanned >= 0 && i < scanned;
         const bars = [0, 1, 2, 3, 4].map((b) =>
           Math.round(10 + random(`tile-${i}-${b}`) * 26),
         );
@@ -158,7 +164,29 @@ const SongGrid: React.FC = () => {
 const PartALabels: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const enter = spring({ frame, fps, config: { damping: 200 } });
+  const libraryIn = spring({
+    frame: frame - T.library * fps,
+    fps,
+    config: { damping: 200 },
+  });
+  // The clip flies in from the center of the screen (where the phone was)
+  const clipIn = spring({
+    frame: frame - T.recording * fps,
+    fps,
+    config: { damping: 200 },
+    durationInFrames: 0.9 * fps,
+  });
+  const question = spring({
+    frame: frame - (T.recording + 0.7) * fps,
+    fps,
+    config: { damping: 10 },
+  });
+  const compareIn = interpolate(
+    frame,
+    [T.compare * fps, (T.compare + 0.4) * fps],
+    [0, 1],
+    clamp,
+  );
   const fadeOut = interpolate(
     frame,
     [(T.partB - 0.4) * fps, T.partB * fps],
@@ -170,7 +198,7 @@ const PartALabels: React.FC = () => {
     fps,
     config: { damping: 10 },
   });
-  const checked = Math.floor(Math.max(0, frame - 0.8 * fps) / 2);
+  const checked = Math.max(0, Math.floor((frame - T.compare * fps) / 2));
 
   return (
     <div style={{ opacity: fadeOut, fontFamily: FONT }}>
@@ -181,11 +209,13 @@ const PartALabels: React.FC = () => {
           left: 120,
           top: 400,
           width: 560,
-          opacity: enter,
+          opacity: clipIn,
+          translate: `${interpolate(clipIn, [0, 1], [560, 0])}px 0px`,
+          scale: String(interpolate(clipIn, [0, 1], [0.4, 1])),
         }}
       >
         <div style={{ color: COLORS.textDim, fontSize: 36, marginBottom: 20 }}>
-          Your recording
+          Your short recording
         </div>
         <Waveform
           width={560}
@@ -195,7 +225,20 @@ const PartALabels: React.FC = () => {
           seed="clipA"
         />
       </div>
-      {/* Arrow between */}
+      {/* "Which one?" question mark, replaced by an arrow once comparing starts */}
+      <div
+        style={{
+          position: "absolute",
+          left: 715,
+          top: 440,
+          fontSize: 120,
+          color: COLORS.accentLight,
+          opacity: question * (1 - compareIn),
+          scale: String(question),
+        }}
+      >
+        ?
+      </div>
       <div
         style={{
           position: "absolute",
@@ -203,7 +246,7 @@ const PartALabels: React.FC = () => {
           top: 470,
           fontSize: 80,
           color: COLORS.textDim,
-          opacity: enter,
+          opacity: compareIn,
         }}
       >
         →
@@ -218,10 +261,10 @@ const PartALabels: React.FC = () => {
           textAlign: "center",
           color: COLORS.text,
           fontSize: 44,
-          opacity: enter,
+          opacity: libraryIn,
         }}
       >
-        Millions of songs
+        Shazam&apos;s library: millions of songs
       </div>
       {/* Counter */}
       <div
@@ -233,6 +276,7 @@ const PartALabels: React.FC = () => {
           textAlign: "center",
           color: COLORS.textDim,
           fontSize: 34,
+          opacity: compareIn,
         }}
       >
         compared {checked.toLocaleString("en-US")} of 50,000,000
