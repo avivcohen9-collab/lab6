@@ -63,12 +63,12 @@ Shazam doesn't compare raw sound. It turns audio into a sparse "star map" of lou
 
 ---
 
-## Scene 7 — Time alignment (~10s)
+## Scene 7 — Time alignment (~22s)
 
-**On screen:** A histogram per candidate song, with "time offset" on the x-axis and "matches" on the y-axis. Wrong songs show low scattered bars. The correct song shows one tall spike, and it's highlighted with a ✓.
+**On screen:** Title hands over from "Step 4: Lookup" to "Step 5: Line up in time". Four song panels (the songs hit in Scene 6) appear with a match tally: Midnight Drive 6, Ocean Lights 5, Paper Planes 2, Golden Hour 1. Each panel gets a histogram ("matches ↑", "time offset →", 0:00–3:00). A formula appears: offset = time in song − time in recording, with the example 0:42.6 − 0:00.5 = 0:42.1. The wrong songs' matches drop in at scattered offsets. Then Midnight Drive's matches drop one by one into a single stack at 0:42.1 ("← all at 0:42.1"). On "That spike is the answer", Midnight Drive's panel glows green with "✓ Match" and the others dim.
 
 **Narration:**
-> Many songs share some fingerprints by chance. But for the right song, the matches all line up at the same time offset. That spike is the answer.
+> Several songs share some of these fingerprints, just by chance. So Shazam checks the timing. For every match, it subtracts the moment in your recording from the moment in the song. For a wrong song, those offsets are scattered. But for the right song, they all line up at the same offset, forty-two seconds in. That spike is the answer.
 
 ---
 
