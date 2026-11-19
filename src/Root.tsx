@@ -2,6 +2,7 @@ import { Composition, Folder } from "remotion";
 import { MyComposition } from "./Composition";
 import { SCENES_TOTAL_SECONDS, ShazamExplainer } from "./ShazamExplainer";
 import { SCENE1_DURATION, Scene1Hook } from "./scenes/Scene1Hook";
+import { SCENE2_DURATION, Scene2Problem } from "./scenes/Scene2Problem";
 import { FPS, HEIGHT, WIDTH } from "./theme";
 
 export const RemotionRoot: React.FC = () => {
@@ -20,6 +21,14 @@ export const RemotionRoot: React.FC = () => {
           id="Scene1Hook"
           component={Scene1Hook}
           durationInFrames={Math.round(SCENE1_DURATION * FPS)}
+          fps={FPS}
+          width={WIDTH}
+          height={HEIGHT}
+        />
+        <Composition
+          id="Scene2Problem"
+          component={Scene2Problem}
+          durationInFrames={Math.round(SCENE2_DURATION * FPS)}
           fps={FPS}
           width={WIDTH}
           height={HEIGHT}
